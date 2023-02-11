@@ -1,14 +1,14 @@
-package shop.mtcoding.blog;
+package shop.mtcoding.blog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class TestController {
+public class BoardController {
     
     @GetMapping("/")
-    public String test(){
+    public String main(){
 
-        return "test";
+        return "board/main";
     }
 }
