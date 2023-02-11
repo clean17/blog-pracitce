@@ -3,7 +3,34 @@
     <div class="container my-3">
         <div class="my-grid">
             <div class="card pt-3">
-                <img class="card-img-top " src="" alt="Card image">
+                <img class="card-img-top " src="/images/default_profile.png" alt="Card image">
+                <hr>
+                <div class="card-body my-title-ellipsis">
+                    <div class="my-title-ellipsis">작성자 : </div>
+                    <h4 class="card-title my-title-ellipsis"></h4>
+                    <a href="/board/detail/1" class="btn btn-primary">상세보기</a>
+                </div>
+            </div>
+            <div class="card pt-3">
+                <img class="card-img-top " src="/images/default_profile.png" alt="Card image">
+                <hr>
+                <div class="card-body my-title-ellipsis">
+                    <div class="my-title-ellipsis">작성자 : </div>
+                    <h4 class="card-title my-title-ellipsis"></h4>
+                    <a href="#" class="btn btn-primary">상세보기</a>
+                </div>
+            </div>
+            <div class="card pt-3">
+                <img class="card-img-top " src="/images/default_profile.png" alt="Card image">
+                <hr>
+                <div class="card-body my-title-ellipsis">
+                    <div class="my-title-ellipsis">작성자 : </div>
+                    <h4 class="card-title my-title-ellipsis"></h4>
+                    <a href="#" class="btn btn-primary">상세보기</a>
+                </div>
+            </div>
+            <div class="card pt-3">
+                <img class="card-img-top " src="/images/default_profile.png" alt="Card image">
                 <hr>
                 <div class="card-body my-title-ellipsis">
                     <div class="my-title-ellipsis">작성자 : </div>

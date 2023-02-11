@@ -11,4 +11,14 @@ public class BoardController {
 
         return "board/main";
     }
+    @GetMapping("/board/write")
+    public String WriteBoard(){
+
+        return "board/writeForm";
+    }
+    @GetMapping("/board/detail/1")
+    public String detail(){
+
+        return "board/detail";
+    } 
 }

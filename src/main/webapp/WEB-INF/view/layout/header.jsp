@@ -28,20 +28,20 @@
             <div class="collapse navbar-collapse justify-content-between" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                    <li class="nav-item">
-                        <a class="nav-link" href="#">로그인</a>
+                        <a class="nav-link" href="/login">로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">회원가입</a>
+                        <a class="nav-link" href="/join">회원가입</a>
                     </li>
                 
                    <li class="nav-item">
-                        <a class="nav-link" href="#">글쓰기</a>
+                        <a class="nav-link" href="/board/write">글쓰기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">회원수정</a>
+                        <a class="nav-link" href="/update">회원수정</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">로그아웃</a>
+                        <a class="nav-link" href="/logout">로그아웃</a>
                     </li>
                    
                 </ul>
