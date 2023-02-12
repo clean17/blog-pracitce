@@ -54,6 +54,7 @@ public class BoardController {
         mockSession();
         List<BoardMainRespDto> boardList = boardRepository.findAllWithUser();
         model.addAttribute("boardList", boardList);
+        System.out.println("테스트"+boardList.get(0).getThumbnail());
         return "board/main";
     }
     @GetMapping("/board/write")

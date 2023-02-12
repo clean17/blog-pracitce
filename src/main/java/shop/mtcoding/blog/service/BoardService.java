@@ -11,6 +11,7 @@ import shop.mtcoding.blog.ex.CustomApiException;
 import shop.mtcoding.blog.ex.CustomException;
 import shop.mtcoding.blog.model.Board;
 import shop.mtcoding.blog.model.BoardRepository;
+import shop.mtcoding.blog.util.HttpParser;
 
 @Service
 public class BoardService {
@@ -23,8 +24,9 @@ public class BoardService {
 
     @Transactional
     public void 글쓰기(BoardSaveReqDto bDto, int userId) {
+        String thumbnail = HttpParser.thumbnail(bDto.getContent());
         try {
-            boardRepository.insert(bDto.getTitle(), bDto.getContent(), userId);
+            boardRepository.insert(bDto.getTitle(), bDto.getContent(),  userId, thumbnail);
         } catch (Exception e) {
             throw new CustomException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -46,6 +48,7 @@ public class BoardService {
 
     @Transactional
     public void 글수정(int id, BoardUpdateReqDto bdto, int principalId) {
+        String thumbnail = HttpParser.thumbnail(bdto.getContent());
         Board board = boardRepository.findById(principalId);
         if (board.getUserId() != principalId){
             throw new CustomApiException( "글을 수정할 권한이 없습니다.", HttpStatus.FORBIDDEN);
@@ -54,7 +57,8 @@ public class BoardService {
             boardRepository.update(
                 bdto.getTitle(),
                 bdto.getContent(),
-                principalId);
+                principalId,
+                thumbnail);
         } catch (Exception e) {
             throw new CustomApiException("서버에 일시적인 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
