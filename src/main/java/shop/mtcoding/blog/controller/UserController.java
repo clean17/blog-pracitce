@@ -54,7 +54,7 @@ public class UserController {
         userService.회원가입(uDto);
         return "redirect:/login";
     }
-    @PostMapping("/loin")
+    @PostMapping("/login")
     public String login(UserLoginReqDto uDto){
         if( uDto.getUsername()==null||uDto.getUsername().isEmpty()){
             throw new CustomException("유저네임을 입력하세요");   
@@ -63,6 +63,6 @@ public class UserController {
             throw new CustomException("패스워드를 입력하세요");
         }
         userService.로그인(uDto);
-        return"";
+        return "redirect:/";
     }
 }
