@@ -42,7 +42,7 @@ public class BoardController {
     public String main(Model model){
         mockSession();
         List<BoardMainRespDto> boardList = boardRepository.findAllWithUser();
-        model.addAttribute("boardLsit", boardList);
+        model.addAttribute("boardList", boardList);
         return "board/main";
     }
     @GetMapping("/board/write")
