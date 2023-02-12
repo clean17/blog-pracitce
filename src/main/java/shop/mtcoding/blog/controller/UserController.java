@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blog.dto.user.UserReq.UserJoinReqDto;
 import shop.mtcoding.blog.dto.user.UserReq.UserLoginReqDto;
 import shop.mtcoding.blog.ex.CustomException;
+import shop.mtcoding.blog.model.User;
 import shop.mtcoding.blog.service.UserService;
 
 @Controller
@@ -37,7 +38,7 @@ public class UserController {
     }
     @GetMapping("/logout")
     public String logout(){
-
+        session.invalidate();
         return "redirect:/";
     }
     @PostMapping("/join")
@@ -62,7 +63,8 @@ public class UserController {
         if ( uDto.getPassword()==null||uDto.getPassword().isEmpty()){
             throw new CustomException("패스워드를 입력하세요");
         }
-        userService.로그인(uDto);
+        User principal = userService.로그인(uDto);
+        session.setAttribute("principal", principal);
         return "redirect:/";
     }
 }
