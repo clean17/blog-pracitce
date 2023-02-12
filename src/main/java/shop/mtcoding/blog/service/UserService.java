@@ -27,10 +27,13 @@ public class UserService {
         // 무조건 try catch 로 해야 테스트에서 에러가 나오는데 ?
     }
 
-    public void 로그인(UserLoginReqDto uDto) {
-        User user = userRepository.findByUsernameAndPassword(uDto.getUsername(), uDto.getPassword());
-        if( user == null ){
+    public User 로그인(UserLoginReqDto uDto) {
+        User principal = userRepository.findByUsernameAndPassword(uDto.getUsername(), uDto.getPassword());
+        if( principal == null ){
             throw new CustomException("아이디 혹은 비밀번호가 다릅니다.");
         }
+
+        return principal;
+
     };
 }
