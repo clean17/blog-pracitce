@@ -18,6 +18,7 @@ import shop.mtcoding.blog.dto.ResponseDto;
 import shop.mtcoding.blog.dto.board.BoardReq.BoardSaveReqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardDetailResqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardMainRespDto;
+import shop.mtcoding.blog.dto.board.BoardResp.BoardUpdateResqDto;
 import shop.mtcoding.blog.ex.CustomApiException;
 import shop.mtcoding.blog.ex.CustomException;
 import shop.mtcoding.blog.model.Board;
@@ -76,7 +77,8 @@ public class BoardController {
         if ( board.getUserId() != principal.getId()){
             throw new CustomException("글을 수정할 권한이 없습니다.", HttpStatus.UNAUTHORIZED);
         }   
- 
+        BoardUpdateResqDto dto =boardRepository.findByIdWithUserUpdate(id);
+        model.addAttribute("dto", dto);
         return "board/updateForm";
     }
     @PostMapping("/board/write")
