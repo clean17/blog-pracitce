@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.blog.dto.ResponseDto;
 import shop.mtcoding.blog.dto.board.BoardReq.BoardSaveReqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardDetailResqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardMainRespDto;
+import shop.mtcoding.blog.ex.CustomApiException;
 import shop.mtcoding.blog.ex.CustomException;
 import shop.mtcoding.blog.model.BoardRepository;
 import shop.mtcoding.blog.model.User;
@@ -80,8 +82,12 @@ public class BoardController {
     }
     @DeleteMapping("/board/delete/{id}")
     public ResponseEntity<?> deleteBoard(@PathVariable int id){
-
-        
+        User principal = (User) session.getAttribute("principal");
+        if( principal == null ){
+            throw new CustomApiException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
+        }
+        boardService.글삭제(id, principal.getId());
+        return new ResponseEntity<>(new ResponseDto<>(1, "삭제 성공", null), HttpStatus.OK);
         
     }
 }
