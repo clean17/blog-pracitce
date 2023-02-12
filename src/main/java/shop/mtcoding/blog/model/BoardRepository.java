@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import shop.mtcoding.blog.dto.board.BoardResp.BoardDetailResqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardMainRespDto;
+import shop.mtcoding.blog.dto.board.BoardResp.BoardUpdateResqDto;
 
 @Mapper
 public interface BoardRepository {
@@ -14,6 +15,7 @@ public interface BoardRepository {
     public Board findById(int id);
     public List<BoardMainRespDto> findAllWithUser();
     public BoardDetailResqDto findByIdWithUser(int id);
+    public BoardUpdateResqDto findByIdWithUserUpdate(int id);
     public int insert(
         @Param("title") String title,
         @Param("content") String content,
@@ -21,7 +23,8 @@ public interface BoardRepository {
     );
     public int update(
         @Param("title") String title,
-        @Param("content") String content
+        @Param("content") String content,
+        @Param("id") int id
     );
     public int delete(int id);
 }

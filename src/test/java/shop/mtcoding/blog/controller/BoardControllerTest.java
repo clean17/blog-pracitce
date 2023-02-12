@@ -1,7 +1,9 @@
 package shop.mtcoding.blog.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +17,9 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import shop.mtcoding.blog.dto.board.BoardReq.BoardUpdateReqDto;
 import shop.mtcoding.blog.model.User;
 
 @AutoConfigureMockMvc
@@ -61,5 +66,29 @@ public class BoardControllerTest {
         ResultActions rs = mvc.perform(delete("/board/delete/"+id).session(mockSession));
         String a = rs.andReturn().getResponse().getContentAsString();
         System.out.println(a);
+    }
+    @Test
+    public void updateForm_test() throws Exception {
+        int id=1;
+        ResultActions rs = mvc.perform(get("/board/updateForm/"+id)
+        .session(mockSession)
+        );
+        rs.andExpect(status().isOk());
+    }
+    @Test
+    public void updateBoard_test() throws Exception {
+        ObjectMapper om = new ObjectMapper();
+        BoardUpdateReqDto b = new BoardUpdateReqDto();
+        b.setTitle(" 그러면");
+        b.setContent("이렇게");
+        int id = 1;
+        String req = om.writeValueAsString(b);
+        ResultActions rs = mvc.perform(put("/board/update/"+id)
+        .content(req)
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .session(mockSession)
+        );
+        rs.andExpect(status().isOk());
+
     }
 }

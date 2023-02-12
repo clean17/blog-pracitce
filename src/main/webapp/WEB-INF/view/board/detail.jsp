@@ -2,10 +2,12 @@
 <%@ include file="../layout/header.jsp" %>
 
     <div class="container my-3">
+        <c:if test="${principal.id == dto.userId}" >
         <div class="mb-3">
-            <a href="/" class="btn btn-warning">수정</a>
+            <a href="/board/updateForm/${dto.id}" class="btn btn-warning">수정</a>
             <button type="button" class="btn btn-danger" onclick="deleteBoard(${dto.id})">삭제</button>
         </div>
+        </c:if>
 
         <div class="mb-2 d-flex justify-content-end">
             글 번호 : &nbsp<span id="id">${dto.id}  &nbsp&nbsp<i>&nbsp&nbsp&nbsp&nbsp </i></span> 작성자 : ${dto.username} &nbsp<span class="me-3"><i> </i></span> 
@@ -63,6 +65,7 @@
                 alert(res.msg);
                 location.href="/";
             }).fail((err) => {
+                alert('ddd');
                 alert(err.responseJSON.msg);
                 location.href="/";
             });

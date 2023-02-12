@@ -20,10 +20,20 @@
 
    <select id="findByIdWithUser" resultType="shop.mtcoding.blog.dto.board.BoardResp$BoardDetailResqDto">
       select b.id, b.title, b.content,
-      ( select username from user_tb where id = b.user_id ) username
+      ( select username from user_tb where id = b.user_id ) username,
+      b.user_id
       from board_tb b
       where id = #{id}
    </select>
+
+   <select id="findByIdWithUserUpdate" resultType="shop.mtcoding.blog.dto.board.BoardResp$BoardUpdateResqDto">
+      select b.id, b.title, b.content,
+      
+      b.user_id
+      from board_tb b
+      where id = #{id}
+   </select>
+   
 
    <insert id="insert">
       insert into board_tb ( title, content, user_id, created_at ) 
@@ -31,7 +41,7 @@
    </insert>
 
    <update id="update">
-      update board_tb set title = #{title}, content=#{content}, created_at=now() where id = #{id}@
+      update board_tb set title = #{title}, content=#{content}, created_at=now() where id = #{id}
    </update>
 
    <delete id="delete">
