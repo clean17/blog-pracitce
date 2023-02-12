@@ -62,6 +62,10 @@ public class BoardController {
         model.addAttribute("dto", dto);
         return "board/detail";
     } 
+    @GetMapping("/board/updateForm")
+    public String updateForm(){
+        return "board/updateForm";
+    }
     @PostMapping("/board/write")
     public String save(BoardSaveReqDto bDto){
         User principal = (User) session.getAttribute("principal");
