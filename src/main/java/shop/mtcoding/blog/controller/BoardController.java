@@ -1,15 +1,20 @@
 package shop.mtcoding.blog.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.blog.dto.board.BoardReq.BoardSaveReqDto;
+import shop.mtcoding.blog.dto.board.BoardResp.BoardMainRespDto;
 import shop.mtcoding.blog.ex.CustomException;
+import shop.mtcoding.blog.model.BoardRepository;
 import shop.mtcoding.blog.model.User;
 import shop.mtcoding.blog.service.BoardService;
 
@@ -22,6 +27,9 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    @Autowired
+    private BoardRepository boardRepository;
+
     private void mockSession(){
         User principal = new User();
         principal.setId(1);
@@ -31,8 +39,10 @@ public class BoardController {
     };
     
     @GetMapping("/")
-    public String main(){
+    public String main(Model model){
         mockSession();
+        List<BoardMainRespDto> boardList = boardRepository.findAllWithUser();
+        model.addAttribute("boardLsit", boardList);
         return "board/main";
     }
     @GetMapping("/board/write")
@@ -51,8 +61,6 @@ public class BoardController {
         if( principal == null ){
             throw new CustomException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
         }
-        System.out.println("테스트 "+bDto.getTitle()+ bDto.getContent()+ principal.getId());
-        
         if( bDto.getTitle()==null||bDto.getTitle().isEmpty()){
             throw new CustomException("제목을 입력하세요");   
         }

@@ -17,7 +17,6 @@ public class BoardService {
 
     @Transactional
     public void 글쓰기(BoardSaveReqDto bDto, int userId) {
-        System.out.println("테스트 "+bDto.getTitle()+ bDto.getContent()+ userId);
         try {
             boardRepository.insert(bDto.getTitle(), bDto.getContent(), userId);
         } catch (Exception e) {

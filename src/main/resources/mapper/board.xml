@@ -12,6 +12,10 @@
       select * from board_tb where id = #{id}
    </select>
 
+   <select id="findAllWithUser" resultType="shop.mtcoding.blog.dto.board.BoardResp$BoardMainRespDto">
+      select * from board_tb
+   </select>
+
    <insert id="insert">
       insert into board_tb ( title, content, user_id, created_at ) 
         values ( #{title}, #{content}, #{userId}, now() ) 
