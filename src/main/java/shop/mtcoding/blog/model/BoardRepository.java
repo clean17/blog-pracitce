@@ -12,7 +12,7 @@ public interface BoardRepository {
     public int insert(
         @Param("title") String title,
         @Param("content") String content,
-        @Param("user_id") int userId
+        @Param("userId") int userId
     );
     public int update(
         @Param("title") String title,
