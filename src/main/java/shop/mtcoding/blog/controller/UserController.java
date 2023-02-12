@@ -50,7 +50,7 @@ public class UserController {
         if( uDto.getEmail()==null||uDto.getEmail().isEmpty()){
             throw new CustomException("이메일을 입력하세요");
         }
-        userService.회원가입();
-        return "redirect:/";
+        userService.회원가입(uDto);
+        return "redirect:/login";
     }
 }

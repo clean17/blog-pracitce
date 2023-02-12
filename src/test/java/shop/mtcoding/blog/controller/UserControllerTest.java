@@ -21,7 +21,7 @@ public class UserControllerTest {
 
     @Test
     public void join_test() throws Exception{
-        String req = "username=ssss&password=1234&email=232@2323";
+        String req = "username=sss&password=1234&email=232@2323";
 
         ResultActions rs = mvc.perform(post("/join").content(req).contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE));
         rs.andExpect(status().is3xxRedirection());
