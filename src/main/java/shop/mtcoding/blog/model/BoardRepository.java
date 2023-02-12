@@ -19,12 +19,14 @@ public interface BoardRepository {
     public int insert(
         @Param("title") String title,
         @Param("content") String content,
-        @Param("userId") int userId
+        @Param("userId") int userId,
+        @Param("thumbnail") String thumbnail
     );
     public int update(
         @Param("title") String title,
         @Param("content") String content,
-        @Param("id") int id
+        @Param("id") int id,
+        @Param("thumbnail") String thumbnail
     );
     public int delete(int id);
 }
