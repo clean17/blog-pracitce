@@ -10,7 +10,7 @@ public class UserReq {
     @Setter
     @Getter
     public static class UserJoinReqDto{
-        private String usernmae;
+        private String username;
         private String password;
         private String email;
     }

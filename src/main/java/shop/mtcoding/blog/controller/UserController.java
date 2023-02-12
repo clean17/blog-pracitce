@@ -41,7 +41,7 @@ public class UserController {
     }
     @PostMapping("/join")
     public String join(UserJoinReqDto uDto){
-        if( uDto.getUsernmae()==null||uDto.getUsernmae().isEmpty()){
+        if( uDto.getUsername()==null||uDto.getUsername().isEmpty()){
             throw new CustomException("유저네임을 입력하세요");   
         }
         if ( uDto.getPassword()==null||uDto.getPassword().isEmpty()){
