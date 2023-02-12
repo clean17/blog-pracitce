@@ -18,6 +18,9 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
+
+
+
     @Transactional
     public void 글쓰기(BoardSaveReqDto bDto, int userId) {
         try {
