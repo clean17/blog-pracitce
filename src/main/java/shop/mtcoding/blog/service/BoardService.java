@@ -28,6 +28,9 @@ public class BoardService {
 
     public void 글삭제(int id, int principalId) {
         Board board = boardRepository.findById(id);
+        if ( board == null ){
+            throw new CustomApiException("존재 하지 않는 글을 삭제할 수 없습니다", HttpStatus.FORBIDDEN);
+        }
         if ( board.getUserId() != principalId){
             throw new CustomApiException("글을 삭제할 권한이 없습니다.", HttpStatus.FORBIDDEN);
         }

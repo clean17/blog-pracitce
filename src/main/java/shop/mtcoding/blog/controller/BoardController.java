@@ -20,6 +20,7 @@ import shop.mtcoding.blog.dto.board.BoardResp.BoardDetailResqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardMainRespDto;
 import shop.mtcoding.blog.ex.CustomApiException;
 import shop.mtcoding.blog.ex.CustomException;
+import shop.mtcoding.blog.model.Board;
 import shop.mtcoding.blog.model.BoardRepository;
 import shop.mtcoding.blog.model.User;
 import shop.mtcoding.blog.service.BoardService;
@@ -62,8 +63,21 @@ public class BoardController {
         model.addAttribute("dto", dto);
         return "board/detail";
     } 
-    @GetMapping("/board/updateForm")
-    public String updateForm(){
+    @GetMapping("/board/updateForm/{id}")
+    public String updateForm(@PathVariable int id){
+        User principal = (User) session.getAttribute("principal");
+        if( principal == null ){
+            throw new CustomException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
+        }
+        Board board = boardRepository.findById(id);
+        if ( board == null ){
+            throw new CustomException("존재하지 않는 글을 수정할 수 없습니다.", HttpStatus.FORBIDDEN);
+        }
+        if ( board.getUserId() != principal.getId()){
+            throw new CustomException("글을 수정할 권한이 없습니다.", HttpStatus.UNAUTHORIZED);
+        }
+
+
         return "board/updateForm";
     }
     @PostMapping("/board/write")
