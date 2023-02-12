@@ -63,6 +63,7 @@
                 alert(res.msg);
                 location.href="/";
             }).fail((err) => {
+                alert('ddd');
                 alert(err.responseJSON.msg);
                 location.href="/";
             });

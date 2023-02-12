@@ -64,7 +64,7 @@ public class BoardController {
         return "board/detail";
     } 
     @GetMapping("/board/updateForm/{id}")
-    public String updateForm(@PathVariable int id){
+    public String updateForm(@PathVariable int id, Model model){
         User principal = (User) session.getAttribute("principal");
         if( principal == null ){
             throw new CustomException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
@@ -75,8 +75,7 @@ public class BoardController {
         }
         if ( board.getUserId() != principal.getId()){
             throw new CustomException("글을 수정할 권한이 없습니다.", HttpStatus.UNAUTHORIZED);
-        }
-
+        }   
 
         return "board/updateForm";
     }

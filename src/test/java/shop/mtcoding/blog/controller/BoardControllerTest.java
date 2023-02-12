@@ -1,6 +1,7 @@
 package shop.mtcoding.blog.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -61,5 +62,13 @@ public class BoardControllerTest {
         ResultActions rs = mvc.perform(delete("/board/delete/"+id).session(mockSession));
         String a = rs.andReturn().getResponse().getContentAsString();
         System.out.println(a);
+    }
+    @Test
+    public void updateForm_test() throws Exception {
+        int id=2;
+        ResultActions rs = mvc.perform(get("/board/updateForm/"+id)
+        .session(mockSession)
+        );
+        rs.andExpect(status().isOk());
     }
 }
