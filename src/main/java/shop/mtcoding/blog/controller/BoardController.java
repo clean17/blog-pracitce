@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import shop.mtcoding.blog.dto.ResponseDto;
 import shop.mtcoding.blog.dto.board.BoardReq.BoardSaveReqDto;
+import shop.mtcoding.blog.dto.board.BoardReq.BoardUpdateReqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardDetailResqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardMainRespDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardUpdateResqDto;
@@ -105,8 +108,32 @@ public class BoardController {
         if( principal == null ){
             throw new CustomApiException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
         }
+        Board board = boardRepository.findById(id);
+        if ( board == null ){
+            throw new CustomApiException("존재 하지 않는 글을 삭제할 수 없습니다", HttpStatus.FORBIDDEN);
+        }
         boardService.글삭제(id, principal.getId());
         return new ResponseEntity<>(new ResponseDto<>(1, "삭제 성공", null), HttpStatus.OK);
         
+    }
+    @PutMapping("/board/update/{id}")
+    public ResponseEntity<?> updateBoard(@PathVariable int id, @RequestBody BoardUpdateReqDto bDto){
+        User principal = (User) session.getAttribute("principal");
+        if( principal == null ){
+            throw new CustomApiException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
+        }
+        if ( bDto.getTitle()==null||bDto.getTitle().isEmpty()){
+            throw new CustomApiException("글 제목이 비었습니다.");
+        }
+        if ( bDto.getContent()==null||bDto.getContent().isEmpty()){
+            throw new CustomApiException("글 내용이 비었습니다.");
+        }
+        Board board = boardRepository.findById(id);
+        if ( board == null ){
+            throw new CustomApiException("존재하지 않는 계시글을 수정할 수 없습니다.", HttpStatus.FORBIDDEN);
+        }
+        boardService.글수정(id, bDto, principal.getId());
+
+        return new ResponseEntity<>(new ResponseDto<>(1, "수정 성공", null), HttpStatus.OK);
     }
 }

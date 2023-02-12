@@ -41,7 +41,7 @@
    </insert>
 
    <update id="update">
-      update board_tb set title = #{title}, content=#{content}, created_at=now() where id = #{id}@
+      update board_tb set title = #{title}, content=#{content}, created_at=now() where id = #{id}
    </update>
 
    <delete id="delete">

@@ -23,7 +23,8 @@ public interface BoardRepository {
     );
     public int update(
         @Param("title") String title,
-        @Param("content") String content
+        @Param("content") String content,
+        @Param("id") int id
     );
     public int delete(int id);
 }
