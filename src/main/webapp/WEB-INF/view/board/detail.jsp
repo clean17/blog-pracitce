@@ -57,7 +57,7 @@
         function deleteBoard(id){
             $.ajax({
                 type: "delete",
-                url: "/board/delete",
+                url: "/board/delete/"+id,
                 dataType:"json"
             }).done((res) => {
                 alert(res.msg);
