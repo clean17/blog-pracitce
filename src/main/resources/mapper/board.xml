@@ -18,6 +18,13 @@
       from board_tb b
    </select>
 
+   <select id="findByIdWithUser" resultType="shop.mtcoding.blog.dto.board.BoardResp$BoardDetailResqDto">
+      select b.id, b.title, b.content,
+      ( select username from user_tb where id = b.user_id ) username
+      from board_tb b
+      where id = #{id}
+   </select>
+
    <insert id="insert">
       insert into board_tb ( title, content, user_id, created_at ) 
         values ( #{title}, #{content}, #{userId}, now() ) 

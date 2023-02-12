@@ -1,7 +1,5 @@
 package shop.mtcoding.blog.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -10,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import shop.mtcoding.blog.dto.board.BoardResp.BoardDetailResqDto;
 import shop.mtcoding.blog.dto.board.BoardResp.BoardMainRespDto;
 import shop.mtcoding.blog.model.BoardRepository;
 
@@ -18,10 +17,6 @@ public class BoardRepositoryTest {
     
     @Autowired
     private BoardRepository boardRepository;
-
-    
-    @Autowired
-    ObjectMapper om;
 
     @Test
     public void findAllWithUser_test() throws Exception{
@@ -34,6 +29,16 @@ public class BoardRepositoryTest {
         // assertThat(blist.size()).isEqualTo(7);
         // assertThat(blist.get(1).getUsername()).isEqualTo("love");
         
+    }
+
+    @Test
+    public void findByIdWithUser_test() throws Exception {
+        ObjectMapper om = new ObjectMapper();
+
+        BoardDetailResqDto dto = boardRepository.findByIdWithUser(1);
+        String a = om.writeValueAsString(dto);
+        System.out.println(a);
+
     }
     
 }

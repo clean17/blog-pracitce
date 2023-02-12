@@ -8,15 +8,15 @@
         </div>
 
         <div class="mb-2 d-flex justify-content-end">
-            글 번호 : &nbsp<span id="id">  &nbsp&nbsp<i>&nbsp&nbsp&nbsp&nbsp </i></span> 작성자 : &nbsp<span class="me-3"><i> </i></span> 
+            글 번호 : &nbsp<span id="id">${dto.id}  &nbsp&nbsp<i>&nbsp&nbsp&nbsp&nbsp </i></span> 작성자 : ${dto.username} &nbsp<span class="me-3"><i> </i></span> 
             <i id="heart" class="fa-regular fa-heart my-xl my-cursor"></i>
         </div>
         <div>
-            <h1><b></b></h1>
+            <h1><b>${dto.title}</b></h1>
         </div>
         <hr />
         <div>
-            <div>$</div>
+            <div>${dto.content}</div>
         </div>
         <hr />
         <div class="card">
