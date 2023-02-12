@@ -34,14 +34,14 @@
       where id = #{id}
    </select>
    
-
+   <!-- thumbnail,#{thumbnail}, -->
    <insert id="insert">
-      insert into board_tb ( title, content, user_id, thumbnail, created_at ) 
-        values ( #{title}, #{content}, #{userId}, #{thumbnail}, now() ) 
+      insert into board_tb ( title, content, user_id,  created_at ) 
+        values ( #{title}, #{content}, #{userId},  now() ) 
    </insert>
-
+   <!-- thumbnail=#{thumbnail}, -->
    <update id="update">
-      update board_tb set title = #{title}, content=#{content}, thumbnail=#{thumbnail}, created_at=now() where id = #{id}
+      update board_tb set title = #{title}, content=#{content},  created_at=now() where id = #{id}
    </update>
 
    <delete id="delete">
