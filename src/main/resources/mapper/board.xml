@@ -15,7 +15,6 @@
    <insert id="insert">
       insert into board_tb ( title, content, user_id, created_at ) 
         values ( #{title}, #{content}, #{userId}, now() ) 
-        where id = #{id}
    </insert>
 
    <update id="update">
