@@ -4,7 +4,7 @@
     <div class="container my-3">
         <div class="mb-3">
             <a href="/" class="btn btn-warning">수정</a>
-            <button type="button" class="btn btn-danger">삭제</button>
+            <button type="button" class="btn btn-danger" onclick="deleteBoard(${dto.id})">삭제</button>
         </div>
 
         <div class="mb-2 d-flex justify-content-end">
@@ -53,5 +53,20 @@
             tabsize: 2,
             height: 400
         });
+
+        function deleteBoard(id){
+            $.ajax({
+                type: "delete",
+                url: "/board/delete/"+id,
+                dataType:"json"
+            }).done((res) => {
+                alert(res.msg);
+                location.href="/";
+            }).fail((err) => {
+                alert(err.responseJSON.msg);
+                location.href="/";
+            });
+
+        }
     </script>
 <%@ include file="../layout/footer.jsp" %>
