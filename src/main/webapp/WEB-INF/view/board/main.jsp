@@ -8,8 +8,8 @@
                         <hr>
                         <div class="card-body my-title-ellipsis">
                             <div class="my-title-ellipsis">작성자 : ${board.username}</div>
-                            <h4 class="card-title my-title-ellipsis"></h4>
-                            <a href="/board/detail/1" class="btn btn-primary">상세보기</a>
+                            <h4 class="card-title my-title-ellipsis"> ${board.title}</h4>
+                            <a href="/board/detail/${board.id}" class="btn btn-primary">상세보기</a>
                         </div>
                     </div>
 

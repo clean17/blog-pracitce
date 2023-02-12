@@ -13,7 +13,7 @@
    </select>
 
    <select id="findAllWithUser" resultType="shop.mtcoding.blog.dto.board.BoardResp$BoardMainRespDto">
-      select b.title,
+      select b.id, b.title, 
       ( select username from user_tb where id = b.user_id ) username
       from board_tb b
    </select>

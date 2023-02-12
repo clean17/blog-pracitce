@@ -8,6 +8,7 @@ public class BoardResp {
     @Getter
     @Setter
     public static class BoardMainRespDto{
+        private int id;
         private String title;
         private String username;
     }
