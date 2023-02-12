@@ -32,10 +32,5 @@ public class UserService {
         if( user == null ){
             throw new CustomException("아이디 혹은 비밀번호가 다릅니다.");
         }
-        try {
-            userRepository.findByUsernameAndPassword(uDto.getUsername(), uDto.getPassword());
-        } catch (Exception e) {
-            throw new CustomException("서버에 일시적인 문제가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
     };
 }
