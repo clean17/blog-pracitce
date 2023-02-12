@@ -12,7 +12,7 @@ public class BoardController {
         return "board/main";
     }
     @GetMapping("/board/write")
-    public String WriteBoard(){
+    public String WriteBoard(){ 
 
         return "board/writeForm";
     }
