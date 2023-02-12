@@ -32,6 +32,8 @@ public class UserService {
         if( principal == null ){
             throw new CustomException("아이디 혹은 비밀번호가 다릅니다.");
         }
+
         return principal;
+
     };
 }

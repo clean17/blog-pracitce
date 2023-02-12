@@ -63,8 +63,10 @@ public class UserController {
         if ( uDto.getPassword()==null||uDto.getPassword().isEmpty()){
             throw new CustomException("패스워드를 입력하세요");
         }
+
         User principal = userService.로그인(uDto);
         session.setAttribute("principal", principal);
+
         return "redirect:/";
     }
 }
