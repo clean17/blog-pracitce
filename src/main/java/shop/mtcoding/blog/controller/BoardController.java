@@ -117,7 +117,7 @@ public class BoardController {
         
     }
     @PutMapping("/board/update/{id}")
-    public ResponseEntity<?> updateBoard(@PathVariable int id, @RequestBody BoardUpdateReqDto bDto){
+    public ResponseEntity<?> updateBoard(@PathVariable int id, @RequestBody BoardUpdateReqDto bDto, Model model){
         User principal = (User) session.getAttribute("principal");
         if( principal == null ){
             throw new CustomApiException("로그인이 필요한 페이지 입니다.", HttpStatus.UNAUTHORIZED);
@@ -133,6 +133,8 @@ public class BoardController {
             throw new CustomApiException("존재하지 않는 계시글을 수정할 수 없습니다.", HttpStatus.FORBIDDEN);
         }
         boardService.글수정(id, bDto, principal.getId());
+        BoardDetailResqDto dto = boardRepository.findByIdWithUser(id);
+        model.addAttribute("dto", dto) ;
 
         return new ResponseEntity<>(new ResponseDto<>(1, "수정 성공", null), HttpStatus.OK);
     }
