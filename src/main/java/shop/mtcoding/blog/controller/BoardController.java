@@ -76,7 +76,7 @@ public class BoardController {
         if ( board.getUserId() != principal.getId()){
             throw new CustomException("글을 수정할 권한이 없습니다.", HttpStatus.UNAUTHORIZED);
         }   
-
+ 
         return "board/updateForm";
     }
     @PostMapping("/board/write")

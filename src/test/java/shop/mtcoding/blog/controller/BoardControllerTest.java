@@ -65,7 +65,7 @@ public class BoardControllerTest {
     }
     @Test
     public void updateForm_test() throws Exception {
-        int id=2;
+        int id=1;
         ResultActions rs = mvc.perform(get("/board/updateForm/"+id)
         .session(mockSession)
         );
